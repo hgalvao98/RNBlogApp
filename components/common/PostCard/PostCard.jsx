@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../../../constants";
+import { useRouter } from "expo-router";
 
 function PostCard({ post }) {
-  const { title, content, comments } = post;
+  const { title, content, comments, post_id } = post;
+  const router = useRouter();
+
+  const handlePress = (post) => {
+    router.push(`/${post.post_id}`);
+  };
 
   return (
     <TouchableOpacity
+      onPress={() => handlePress(post)}
       style={{
         padding: 10,
         backgroundColor: COLORS.lightGray,
